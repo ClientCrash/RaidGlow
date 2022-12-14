@@ -30,7 +30,7 @@ public class RaidEventListener implements Listener {
     @EventHandler
     public void entityKilledEvent(EntityDeathEvent event){
         for(Raid raid : RaidUtils.raids){
-            if(raid.getRaiders().size() <= 2){
+            if(raid.getRaiders().size() <= RaidUtils.mobs_remaining){
                 for(Raider raider : raid.getRaiders()){
                     raider.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,99999,1));
                 }
