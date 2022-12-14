@@ -1,0 +1,6 @@
+name: RaidGlow
+version: '${project.version}'
+main: com.clientcrash.raidglow.RaidGlow
+api-version: 1.19
+authors: [ ClientCrash ]
+description: Makes the last two mobs glow in a raid.
