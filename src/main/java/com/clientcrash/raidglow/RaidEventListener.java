@@ -13,30 +13,28 @@ import org.bukkit.potion.PotionEffectType;
 
 public class RaidEventListener implements Listener {
     @EventHandler
-    public void onRaidWaveSpawn(RaidSpawnWaveEvent event){
+    public void onRaidWaveSpawn(RaidSpawnWaveEvent event) {
 
     }
 
     @EventHandler
-    public void onRaidEnd(RaidFinishEvent event){
-        RaidUtils.raids.remove(event.getRaid());
+    public void onRaidEnd(RaidFinishEvent event) {
+        RaidUtils.removeRaid(event.getRaid());
     }
 
     @EventHandler
-    public void onRaidStart(RaidTriggerEvent event){
-        RaidUtils.raids.add(event.getRaid());
+    public void onRaidStart(RaidTriggerEvent event) {
+        RaidUtils.addRaid(event.getRaid());
     }
 
     @EventHandler
-    public void entityKilledEvent(EntityDeathEvent event){
-        for(Raid raid : RaidUtils.raids){
-            if(raid.getRaiders().size() <= RaidUtils.mobs_remaining){
-                for(Raider raider : raid.getRaiders()){
-                    raider.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,99999,1));
+    public void entityKilledEvent(EntityDeathEvent event) {
+        for (Raid raid : RaidUtils.getRaids()) {
+            if (raid.getRaiders().size() <= RaidUtils.getMobsRemaining()) {
+                for (Raider raider : raid.getRaiders()) {
+                    raider.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 99999, 1));
                 }
             }
         }
     }
-
-
 }
